@@ -12,9 +12,25 @@ class Competition_model extends CI_Model
 
     public function deleteCompetition($id)
     {
-        //hapus data ke tabel service point
+        //hapus data di tabel competition
         $this->db->where('id', $id);
         $this->db->delete('competition');
+
+        //hapus data di tabel competition_detail
+        $this->db->where('id', $id);
+        $this->db->delete('competition_detail');
+
+        //hapus data di tabel absen
+        $this->db->where('id', $id);
+        $this->db->delete('absen');
+
+        //hapus data di tabel reward
+        $this->db->where('id', $id);
+        $this->db->delete('reward');
+
+        //hapus data di tabel reward
+        $this->db->where('id', $id);
+        $this->db->delete('sla');
     }
 
     //Kelompok peserta
