@@ -62,9 +62,18 @@
 
     </div>
     <a href="<?= base_url(''); ?>competition/tutuprankingcode" class="badge badge-primary" data-popup="tooltip" title="Back to scheduled"><i class="fas fa-fw fa-share"></i>Back to dashboard</a>
-
 </div>
 <!-- /.container-fluid -->
+
+<!-- tampil gambar pemenang -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+        <img src="<?= base_url('assets/img/profile/') . $gambar['image']; ?>" width="150" class="figure-img img-fluid rounded-circle">
+        <p class="lead"><?= $gambar['nama']; ?></p>
+        <h1 class="display-8">Best Performance</h1>
+        <h7 class="display-8"><?= $gambar['code_competition']; ?></h7>
+    </div>
+</div>
 
 </div>
 <!-- End of Main Content -->

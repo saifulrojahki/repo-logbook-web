@@ -930,9 +930,23 @@ class Competition extends CI_Controller
         $data['competition']  = $this->db->join('member', 'competition_detail.mip = member.mip');
         $data['competition']  = $this->db->where('competition.id', $this->session->userdata('id'));
         $data['competition']  = $this->db->where('competition.servicepoint', $sp['servicepoint']);
-        $data['participant']  = $this->db->order_by('total', 'DESC');
-        $data['participant']  = $this->db->order_by('competition_detail.productivity', 'DESC');
+        $data['competition']  = $this->db->order_by('total', 'DESC');
+        $data['competition']  = $this->db->order_by('competition_detail.productivity', 'DESC');
         $data['competition']  = $this->db->get()->result_array();
+
+        //query builder tampil gambar member nilai total tertinggi
+        $data['gambar']   = $this->db->select('*');
+        $data['gambar']   = $this->db->select('(competition_detail.bobot_productivity + competition_detail.bobot_absen + competition_detail.bobot_pm) - mis_sla + reward - pinalty as total');
+        $data['gambar']   = $this->db->from('competition_detail');
+        $data['gambar']   = $this->db->join('competition', 'competition_detail.id = competition.id');
+        $data['gambar']   = $this->db->join('member', 'competition_detail.mip = member.mip');
+        $data['gambar']  = $this->db->where('competition.id', $this->session->userdata('id'));
+        $data['gambar']   = $this->db->where('competition.servicepoint', $sp['servicepoint']);
+        $data['gambar']   = $this->db->order_by('total', 'DESC');
+        $data['gambar']   = $this->db->order_by('competition_detail.productivity', 'DESC');
+        $data['gambar']   = $this->db->get()->row_array();
+        //var_dump($image);
+        //die;
 
         //hitung grand total
         $nilai = $this->db->select('*');
