@@ -400,6 +400,7 @@ class Competition extends CI_Controller
         $data['participant']  = $this->db->where('competition.id', $this->session->userdata('id'));
         $data['participant']  = $this->db->where('competition.servicepoint', $sp['servicepoint']);
         $data['participant']  = $this->db->where('competition.status', 'SCHEDULED');
+        $data['participant']  = $this->db->where('absen.id', $this->session->userdata('id'));
         $data['participant']  = $this->db->get()->result_array();
 
         //query builder tampil member saja
@@ -559,6 +560,7 @@ class Competition extends CI_Controller
         $data['participant']  = $this->db->where('competition.id', $this->session->userdata('id'));
         $data['participant']  = $this->db->where('competition.servicepoint', $sp['servicepoint']);
         $data['participant']  = $this->db->where('competition.status', 'SCHEDULED');
+        $data['participant']  = $this->db->where('sla.id', $this->session->userdata('id'));
         $data['participant']  = $this->db->get()->result_array();
 
         //query builder tampil member saja
@@ -718,6 +720,7 @@ class Competition extends CI_Controller
         $data['participant']  = $this->db->where('competition.id', $this->session->userdata('id'));
         $data['participant']  = $this->db->where('competition.servicepoint', $sp['servicepoint']);
         $data['participant']  = $this->db->where('competition.status', 'SCHEDULED');
+        $data['participant']  = $this->db->where('reward.id', $this->session->userdata('id'));
         $data['participant']  = $this->db->get()->result_array();
 
         //query builder tampil member saja
