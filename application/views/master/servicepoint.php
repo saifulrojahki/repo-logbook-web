@@ -36,6 +36,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Class</th>
                         <th scope="col">Service Point</th>
                         <th scope="col">Action</th>
 
@@ -46,6 +47,7 @@
                     <?php foreach ($sp as $sm) : ?>
                         <tr>
                             <th scope="row"><?= ++$start; ?></th>
+                            <td><?= $sm['kelas']; ?></td>
                             <td><?= $sm['servicepoint']; ?></td>
                             <td>
                                 <a href="<?= base_url(''); ?>master/spubah/<?= $sm['id']; ?>" class="badge badge-success tampilSPUbah" data-toggle="modal" data-target="#newSPModal" data-id="<?= $sm['id']; ?>">Edit</a> |
@@ -84,6 +86,20 @@
             <div class="modal-body">
                 <form action="<?= base_url('master/servicepoint'); ?>" method="post">
                     <input type="hidden" name="id" id="id">
+                    <!-- list tabel kelas -->
+                    <div class="form-group">
+                        <select name="kelas" id="kelas" class="form-control" required>
+                            <option value="">Select Class</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <input type="text" class="form-control" id="sp" name="sp" placeholder="Service Point Name" autocomplete="off" autofocus required>
                     </div>

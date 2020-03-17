@@ -65,7 +65,16 @@ class Master extends CI_Controller
             $this->load->view('master/servicepoint', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->db->insert('service_point', ['servicepoint' => htmlspecialchars(strtoupper($this->input->post('sp')))]);
+
+            //insert tabel dsn
+            $data = [
+                'kelas' => $this->input->post('kelas', true),
+                'servicepoint' => htmlspecialchars(strtoupper($this->input->post('sp', true)))
+            ];
+            //var_dump($data);
+            $this->db->insert('service_point', $data);
+
+            //$this->db->insert('service_point', ['servicepoint' => htmlspecialchars(strtoupper($this->input->post('sp')))]);
             //pesan alert berhasil input
             $this->session->set_flashdata('message', 'Add Service Point Success');
             //$this->session->set_flashdata('message', '<div class="alert alert-succees" role="alert">
@@ -89,10 +98,11 @@ class Master extends CI_Controller
 
     public function SPubah()
     {
-
+        $kelas = htmlspecialchars(strtoupper($this->input->post('kelas')));
         $sp = htmlspecialchars(strtoupper($this->input->post('sp')));
         $id = $this->input->post('id');
 
+        $this->db->set('kelas', $kelas);
         $this->db->set('servicepoint', $sp);
         $this->db->where('id', $id);
         $this->db->update('service_point');

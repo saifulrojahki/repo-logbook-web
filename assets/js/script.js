@@ -106,6 +106,7 @@ $(function () {
 	$('.tampilSPTambah').on('click', function () {
 		$('#newSPModalLabel').html('Add New Service Point');
 		$('.modal-footer button[type=submit]').html('Save');
+		$('#kelas').val('');
 		$('#sp').val('');
 		$('#id').val('');
 
@@ -127,6 +128,7 @@ $(function () {
 			dataType: 'json',
 			success: function (data) {
 				//console.log(data);
+				$('#kelas').val(data.kelas);
 				$('#sp').val(data.servicepoint);
 				$('#id').val(data.id);
 
