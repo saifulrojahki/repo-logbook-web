@@ -20,7 +20,11 @@ class Competition extends CI_Controller
 
         //query builder tampil service point base on email user
         $email = $this->session->userdata('email'); //ambil data email dari sesion
-        $sp = $this->db->get_where('user', ['email' => $email])->row_array(); //ambil data dari tabel user base on email
+        //ambil data dari tabel user base on email
+        $sp = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        //ambil data dari tabel user base on email
+        $data['servicepoint'] = $this->db->get_where('user', ['email' => $email])->result_array();
 
         //query builder tampil all tabel bulan
         $data['bulan'] = $this->db->get('bulan')->result_array();
@@ -30,6 +34,7 @@ class Competition extends CI_Controller
 
 
         //set form validation untuk tiap textbox
+        $this->form_validation->set_rules('sp', 'Sp', 'required');
         $this->form_validation->set_rules('bulan', 'Bulan', 'required');
         $this->form_validation->set_rules('tahun', 'Tahun', 'required');
         $this->form_validation->set_rules('code', 'Code', 'required|is_unique[competition.code_competition]');
@@ -44,7 +49,7 @@ class Competition extends CI_Controller
             $this->load->view('templates/footer');
         } else {
 
-            //insert tabel edc 
+            //insert tabel competition
             $data = [
                 'code_competition' => $this->input->post('code', true),
                 'bulan' => $this->input->post('bulan', true),
@@ -130,7 +135,7 @@ class Competition extends CI_Controller
             $this->load->view('templates/footer');
         } else {
 
-            //insert tabel edc 
+            //insert tabel competition detail
             $data = [
                 'id' => $this->session->userdata('id'),
                 'mip' => $this->input->post('nama', true),

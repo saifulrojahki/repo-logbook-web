@@ -21,6 +21,20 @@
         <div class="col-lg-6">
 
             <form action="<?= base_url('competition/create'); ?>" method="post">
+                <!-- input tipe hidden untuk kirim post data 
+                <input type="text" name="sp" id="sp" value="<?= $servicepoint['servicepoint']; ?>"> -->
+
+                <div class="form-group">
+                    <label>Service Point</label>
+                    <select name="sp" id="sp" class="form-control" required>
+                        <option value="">Select Year</option>
+                        <?php foreach ($servicepoint as $a) : ?>
+                            <option value="<?= $a['servicepoint']; ?>"><?= $a['servicepoint']; ?></option>
+                        <?php endforeach; ?>
+
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label>Year</label>
                     <select name="tahun" id="tahun" class="form-control" required>
