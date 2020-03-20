@@ -251,18 +251,66 @@ class Competition extends CI_Controller
 
     public function productivityubah()
     {
+        //query builder tampil service point base on email user
+        $email = $this->session->userdata('email'); //ambil data email dari sesion
+        $sp = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        //query tampilkan kelas service point
+        $kelas = $this->db->get_where('service_point', ['servicepoint' => $sp['servicepoint']])->row_array();
 
         //update productivity
         $mip = $this->input->post('mip');
         $productivity = $this->input->post('productivity');
 
-        //hitung bobot
-        if ($productivity >= 4900) {
-            $bobot = 40;
-        } elseif ($productivity >= 4600) {
-            $bobot = 30;
-        } else {
-            $bobot = 20;
+        //hitung bobot berdasarkan kelas sp
+        if ($kelas['kelas'] == 1) {
+            if ($productivity >= 4900) {
+                $bobot = 40;
+            } elseif ($productivity >= 4600) {
+                $bobot = 30;
+            } else {
+                $bobot = 20;
+            }
+        } elseif ($kelas['kelas'] == 2) {
+            if ($productivity >= 4600) {
+                $bobot = 40;
+            } elseif ($productivity >= 4100) {
+                $bobot = 30;
+            } else {
+                $bobot = 20;
+            }
+        } elseif ($kelas['kelas'] == 3) {
+            if ($productivity >= 4100) {
+                $bobot = 40;
+            } elseif ($productivity >= 3600) {
+                $bobot = 30;
+            } else {
+                $bobot = 20;
+            }
+        } elseif ($kelas['kelas'] == 4) {
+            if ($productivity >= 3600) {
+                $bobot = 40;
+            } elseif ($productivity >= 3000) {
+                $bobot = 30;
+            } else {
+                $bobot = 20;
+            }
+        } elseif ($kelas['kelas'] == 5) {
+            if ($productivity >= 3000) {
+                $bobot = 40;
+            } elseif ($productivity >= 2500) {
+                $bobot = 30;
+            } else {
+                $bobot = 20;
+            }
+        } elseif ($kelas['kelas'] == 6) {
+            if ($productivity >= 2500) {
+                $bobot = 40;
+            } elseif ($productivity >= 2000) {
+                $bobot = 30;
+            } else {
+                $bobot = 20;
+            }
         }
 
         //set update productivity tabel competition_detail
