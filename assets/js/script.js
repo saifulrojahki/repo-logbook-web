@@ -393,10 +393,11 @@ $(function () {
 	$('.create-code').on('change', function () {
 		//console.log('ok');
 		//ambil nilai service point, bulan dan tahun
-		var sp = $('#sp option:selected').text();
+		//var sp = $('#sp option:selected').text();
+		var sp = $('#sp').val();
 		var bln = $('#bulan option:selected').text();
 		var thn = $('#tahun option:selected').text();
-		var blnthn = sp + bln + thn;
+		var blnthn = sp + ', ' + bln + ' ' + thn;
 
 		//create code competition
 		$('#code').val(blnthn);
